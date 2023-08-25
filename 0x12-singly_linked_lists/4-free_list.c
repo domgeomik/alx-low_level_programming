@@ -1,12 +1,17 @@
-#include <stddef.h>
 #include <stdlib.h>
 #include "lists.h" 
-void free_list(list_t *head) {
-list_t *temp = head;
-while (temp != NULL) {
-list_t *next = temp->next;
-free(temp->str); 
-free(temp);      
-temp = next;
+/**
+* function that frees a list_t list.
+* @head: head of a list_t list to be freed
+*/
+void free_list(list_t *head) 
+{
+list_t *dom = head;
+while (dom != NULL) 
+{
+list_t *next = dom->next;
+free(dom->str); 
+free(dom);      
+dom = next;
 }
 }
