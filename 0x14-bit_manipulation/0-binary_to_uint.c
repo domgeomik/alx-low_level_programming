@@ -1,26 +1,21 @@
-#include <stdio.h>
 #include "main.h"
 /**
-* binary_to_uint - Converts binary number to an Unsigned int Value
-* @b: string containing the Binary Number
+* binary_to_uint - converts  binary number to unsigned int value
+* @b: string containing the binary number
 *
 * Return: the converted number
 */
-unsigned int binary_to_uint(const char *b) 
+unsigned int binary_to_uint(const char *b)
 {
-if (b == NULL)
+int i;
+unsigned int my_DecimalValue = 0;
+if (!b)
 return (0);
-unsigned int my_Answer = 0;
-while (*b != '\0') 
+for (i = 0; b[i]; i++)
 {
-if (*b == '0' || *b == '1') 
-{
-my_Answer = my_Answer * 2 + (*b - '0');
-b++;
-} else 
-{
-return (0);  
+if (b[i] < '0' || b[i] > '1')
+return (0);
+my_DecimalValue = 2 * my_DecimalValue + (b[i] - '0');
 }
-}
-return (my_Answer);
+return (my_DecimalValue);
 }
