@@ -1,8 +1,6 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "lists.h"
 /**
-* insert_nodeint_at_index - inserts a new node in linked list,
+* insert_nodeint_at_index - insert new node in  linked list,
 * at a given position
 * @head: pointer to the first node in the list
 * @idx: index where the new node is added
@@ -10,24 +8,32 @@
 *
 * Return: pointer to the new node, or NULL
 */
-listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n) 
+listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 {
-if (head == NULL || idx == 0)
-{
-listint_t *don_NewNode = malloc(sizeof(listint_t));
-if (don_NewNode== NULL) 
-{
+unsigned int i;
+listint_t *ufa_Files;
+listint_t *not_ConsFile = *head;
+ufa_Files = malloc(sizeof(listint_t));
+if (!ufa_Files || !head)
 return (NULL);
-}
-don_NewNode->n = n;
-don_NewNode->next = *head;
-*head = don_NewNode;
-return don_NewNode;
-}
-if (*head == NULL)
+ufa_Files->n = n;
+ufa_Files->next = NULL;
+if (idx == 0)
 {
-return (NULL);
+ufa_Files->next = *head;
+*head = ufa_Files;
+return (ufa_Files);
 }
-(*head)->next = insert_nodeint_at_index(&((*head)->next), idx - 1, n);
-return (*head);
+for (i = 0; not_ConsFile && i < idx; i++)
+{
+if (i == idx - 1)
+{
+ufa_Files->next = not_ConsFile->next;
+not_ConsFile->next = ufa_Files;
+return (ufa_Files);
+}
+else
+not_ConsFile = not_ConsFile->next;
+}
+return (NULL);
 }

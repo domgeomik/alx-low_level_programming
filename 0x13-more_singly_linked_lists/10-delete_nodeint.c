@@ -1,20 +1,33 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "lists.h"
-
-int delete_nodeint_at_index(listint_t **head, unsigned int index) 
+/**
+* delete_nodeint_at_index - deletes a linked list node at certain index
+* @head: pointer to the first element in the list
+* @index: index of the node to delete
+*
+* Return: 1 (Success), or -1 (Fail)
+*/
+int delete_nodeint_at_index(listint_t **head, unsigned int index)
 {
-listint_t *my_DelNode= malloc(sizeof(listint_t));
-if (*head == NULL) 
+listint_t *not_ConsFile = *head;
+listint_t *now_File = NULL;
+unsigned int i = 0;
+if (*head == NULL)
+return (-1);
+if (index == 0)
 {
-return (-1);  
-}
-if (index == 0) 
-{
-listint_t *my_temp = *head;
 *head = (*head)->next;
-free(my_temp );
+free(not_ConsFile);
 return (1);
 }
-return delete_nodeint_at_index(&(*head)->next, index - 1);
+while (i < index - 1)
+{
+if (!not_ConsFile || !(not_ConsFile->next))
+return (-1);
+not_ConsFile = not_ConsFile->next;
+i++;
+}
+now_File = not_ConsFile->next;
+not_ConsFile->next = now_File->next;
+free(now_File);
+return (1);
 }
